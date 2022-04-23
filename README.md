@@ -10,3 +10,5 @@ These environment variables must be set in order for the api to work:
 - HOST_URL (the url for this host)
 - PRIVATE_KEY (RS256, for encrypting JWTs)
 - PUBLIC_KEY (RS256, for decrypting JWTs)
+
+Use absolute paths for directories. Directories must already exist.
