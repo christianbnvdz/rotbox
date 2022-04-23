@@ -109,12 +109,12 @@ router.route('/:userid/files/:fileid')
   })
   .get(async (req, res): Promise<void> => {
     const file = await File.findOne({ _id: req.params.fileid });
-    file.deleteFile = {
-      href: `${hostURL}/${(req.user! as any)._id.toString()}/files/${req.params.fileid}`,
-      method: 'DELETE',
-    };
-    res.attachment(`${process.cwd}/files/${file.content}`);
-    res.sendFile(`${process.cwd()}/files/${file.content}`);
+    if (file!.isFile) {
+      res.attachment(`${process.cwd()}/files/${file.content}`);
+      res.sendFile(`${process.cwd()}/files/${file.content}`);
+    } else {
+      res.json({ name: file.name, content: file.content });
+    }
   })
   .delete(async (req, res): Promise<void> => {
     const file = await File.findOneAndDelete({ _id: req.params.fileid });

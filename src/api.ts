@@ -1,6 +1,3 @@
-import { config } from 'dotenv';
-config({ path: `${process.cwd()}/src/.env` });
-
 import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
